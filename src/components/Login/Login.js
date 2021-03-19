@@ -142,8 +142,9 @@ const Login = () => {
         <div>
             <button onClick={handleGoogleSignIn}>Sign in with Google</button>
             <button onClick={handleGHSignIn}>Sign in with Github</button>
-
+            <br />
             <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
+
             <label htmlFor="newUser">New User Sign up</label>
             <form onSubmit={handleSubmit}>
                 {newUser && <input type="text" onBlur={handleBlur} name="name" placeholder="type your name" />}

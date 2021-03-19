@@ -58,12 +58,12 @@ const Destination = () => {
                 <form onSubmit={handleSubmit}>
                     <label>
                         Pick Up:
-                            <input type="text" name="pick" onBlur={handleBlur} required />
+                            <br /><input type="text" name="pick" onBlur={handleBlur} required />
                     </label>
                     <br />
                     <label>
                         Destination:
-                            <input type="text" name="drop" onBlur={handleBlur} required />
+                           <br /> <input type="text" name="drop" onBlur={handleBlur} required />
                     </label>
                     <br />
                     <input type="submit" value="Submit" />

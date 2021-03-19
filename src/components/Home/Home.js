@@ -34,7 +34,7 @@ const Home = () => {
         },
     ]
     return (
-        <div style={style}>
+        <div >
             {
                 rides.map(ride => <Ride ride={ride}></Ride>)
             }

@@ -10,7 +10,7 @@ const Ride = (props) => {
     }
     return (
         <div onClick={() => handleBook(title)} className="vehicle-holder">
-            <div>
+            <div className="info">
                 <img style={{ width: '160px' }} src={imgUrl} alt="" />
                 <h2>{title}</h2>
             </div>

@@ -1,9 +1,21 @@
+.info{
+    height: 300px;
+    width: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: white;
+    text-align: center;
+    color: black;
+}
+.info h2{
+    padding-top: 40px;
+}
 
 
-
-@media (max-width: 700px) {
-    .vehicle-holder{
-        display: grid;
-        grid-template-columns: auto;
-    }
+  .vehicle-holder {
+    display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 50px;
+  justify-items: center;
+  padding: 10px;
   }
