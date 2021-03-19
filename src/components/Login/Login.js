@@ -21,10 +21,12 @@ const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [newUser, setNewUser] = useState(false);
     const [user, setUser] = useState({
+        isSignedIn: false,
         name: '',
         email: '',
         password: '',
-        photo: ''
+        error: '',
+        success: false,
     })
 
     const handleGoogleSignIn = () => {
@@ -153,7 +155,7 @@ const Login = () => {
                 <input type="submit" value="Submit" />
             </form>
             <p style={{ color: 'red' }}>{user.error}</p>
-            {user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'logged in'} successfully</p>}
+            {user.success && console.log('success') && <h2 style={{ color: 'red' }}>User {newUser ? 'created' : 'logged in'} successfully</h2>}
         </div>
     );
 };

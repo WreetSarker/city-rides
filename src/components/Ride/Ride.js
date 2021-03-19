@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import './Ride.css'
 
 const Ride = (props) => {
     const { title, imgUrl, price } = props.ride;
@@ -8,9 +9,11 @@ const Ride = (props) => {
         history.push(`ride/${ride}`)
     }
     return (
-        <div onClick={() => handleBook(title)}>
-            <img style={{ width: '160px' }} src={imgUrl} alt="" />
-            <h2>{title}</h2>
+        <div onClick={() => handleBook(title)} className="vehicle-holder">
+            <div>
+                <img style={{ width: '160px' }} src={imgUrl} alt="" />
+                <h2>{title}</h2>
+            </div>
         </div>
     );
 };
