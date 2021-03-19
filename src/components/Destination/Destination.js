@@ -5,8 +5,11 @@ import bike from '../../images/Frame.png';
 import car from '../../images/Frame-2.png';
 import bus from '../../images/Frame-1.png';
 import train from '../../images/Group.png';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const Destination = () => {
+    const [value, onChange] = useState(new Date());
     const { title } = useParams();
     const rides = [
         {
@@ -72,6 +75,10 @@ const Destination = () => {
                 {routes.pick && routes.drop && <div style={{ display: 'flex', justifyContent: 'space-between', width: '30%', background: 'white', color: 'black', margin: '2px', border: '1ps solid gray', padding: '2px' }}><img style={{ width: '60px' }} src={vehicleInfo.imgUrl} alt="" /> <h3>{title}</h3> <p><small>${vehicleInfo.price}</small></p></div>}
                 {routes.pick && routes.drop && <div style={{ display: 'flex', justifyContent: 'space-between', width: '30%', background: 'white', color: 'black', margin: '2px', border: '1ps solid gray', padding: '2px' }}><img style={{ width: '60px' }} src={vehicleInfo.imgUrl} alt="" /> <h3>{title}</h3> <p><small>${vehicleInfo.price}</small></p></div>}
                 {routes.pick && routes.drop && <div style={{ display: 'flex', justifyContent: 'space-between', width: '30%', background: 'white', color: 'black', margin: '2px', border: '1ps solid gray', padding: '2px' }}><img style={{ width: '60px' }} src={vehicleInfo.imgUrl} alt="" /> <h3>{title}</h3> <p><small>${vehicleInfo.price}</small></p></div>}
+                <Calendar
+                    onChange={onChange}
+                    value={value}
+                />
 
             </div>
             <div className="map" style={{ width: '50%' }}>
