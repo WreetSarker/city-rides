@@ -20,6 +20,10 @@ const Login = () => {
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [newUser, setNewUser] = useState(false);
+    const [pass, setPass] = useState({
+        password: '',
+        confirmPassword: ''
+    });
     const [user, setUser] = useState({
         isSignedIn: false,
         name: '',
@@ -90,13 +94,14 @@ const Login = () => {
         if (!newUser && user.email && user.password) {
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
                 .then((res) => {
-                    const newUserInfo = { ...user };
-                    newUserInfo.error = '';
-                    newUserInfo.success = true;
-                    setUser(newUserInfo);
-                    setLoggedInUser(newUserInfo);
-
-                    history.replace(from)
+                    if (pass.password === pass.confirmPassword) {
+                        const newUserInfo = { ...user };
+                        newUserInfo.error = '';
+                        newUserInfo.success = true;
+                        setUser(newUserInfo);
+                        setLoggedInUser(newUserInfo);
+                        history.replace(from)
+                    }
                 })
                 .catch((error) => {
                     const newUserInfo = { ...user };
@@ -110,6 +115,8 @@ const Login = () => {
     }
     const handleBlur = (event) => {
         let isFieldValid = true;
+        let passValue = '';
+        let confirmedPass = '';
         if (event.target.name === 'email') {
             isFieldValid = /\S+@\S+\.\S+/.test(event.target.value);
         }
@@ -117,7 +124,23 @@ const Login = () => {
             const isPasswordValid = event.target.value.length > 6;
             const passwordHasNumber = /\d{1}/.test(event.target.value);
             isFieldValid = isPasswordValid && passwordHasNumber;
+            if (isFieldValid) {
+                const newPassInfo = { ...pass };
+                newPassInfo[event.target.name] = event.target.value;
+                setPass(newPassInfo)
+            }
         }
+        if (event.target.name === 'confirmPassword') {
+            const isConfirmedPasswordValid = event.target.value.length > 6;
+            const confirmedPasswordHasNumber = /\d{1}/.test(event.target.value);
+            isFieldValid = isConfirmedPasswordValid && confirmedPasswordHasNumber;
+            if (isFieldValid) {
+                const newPassInfo = { ...pass };
+                newPassInfo[event.target.name] = event.target.value;
+                setPass(newPassInfo)
+            }
+        }
+        // isFieldValid = passValue === confirmedPass && console.log('password matched');
 
         if (isFieldValid) {
             const newUserInfo = { ...user };
@@ -152,6 +175,8 @@ const Login = () => {
                 <input type="text" onBlur={handleBlur} name="email" placeholder="email" required />
                 <br />
                 <input type="password" onBlur={handleBlur} name="password" placeholder="password" required />
+                <br />
+                <input type="password" onBlur={handleBlur} name="confirmPassword" placeholder="confirm password" required />
                 <br />
                 <input type="submit" value="Submit" />
             </form>
